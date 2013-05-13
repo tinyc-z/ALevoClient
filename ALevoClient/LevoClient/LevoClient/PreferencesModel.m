@@ -10,6 +10,8 @@
 #import "LevoConnet.h"
 #import <objc/runtime.h>
 
+#define MaxLogNum 100
+
 
 @implementation PreferencesModel
 
@@ -59,6 +61,10 @@ IMP_SINGLETON(PreferencesModel)
     @synchronized(self){
         if (!log) {
             log=@"<nil>";
+        }
+        if ([self.logs count]>=MaxLogNum) {
+            [self.logs removeObjectAtIndex:0];
+            [self.logs removeObjectAtIndex:1];
         }
         [self.logs addObject:log];
         self.logsCount=[self.logs count];
