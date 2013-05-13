@@ -287,15 +287,19 @@
         NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
         [self try2Login];
     }];
-    [self performBlock:^{
-        if(self.config.connetState!=ConnetStateOnline){
-            self.config.ReConnetTime+=1;
-            if (self.config.connetTimeout<15) {
-                self.config.connetTimeout+=2;
-            }
-            [self try2Cancle];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(cancleHandler) object:nil];
+    [self performSelector:@selector(cancleHandler) withObject:nil afterDelay:self.config.connetTimeout];
+}
+
+- (void)cancleHandler
+{
+    if(self.config.connetState!=ConnetStateOnline){
+        self.config.ReConnetTime+=1;
+        if (self.config.connetTimeout<15) {
+            self.config.connetTimeout+=2;
         }
-    } afterDelay:self.config.connetTimeout];
+        [self try2Cancle];
+    }
 }
 
 - (void)try2Cancle
