@@ -139,7 +139,6 @@
 		472062F1173CC8F600A8B4AF /* LevoClient */ = {
 			isa = PBXGroup;
 			children = (
-				47A1DD29173D081A0012F4C7 /* Component */,
 				47CBE6C5173CE43300C063C9 /* images */,
 				479D585B173CD89C00157DB1 /* VC&View */,
 				479D585A173CD88C00157DB1 /* Utils */,
@@ -195,13 +194,6 @@
 				47A6A2BD173F8DD1006E79FE /* NetSpeedInfView.m */,
 			);
 			name = "VC&View";
-			sourceTree = "<group>";
-		};
-		47A1DD29173D081A0012F4C7 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Component;
 			sourceTree = "<group>";
 		};
 		47CBE6C5173CE43300C063C9 /* images */ = {

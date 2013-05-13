@@ -409,7 +409,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{104, 17}, {66, 32}}</string>
 							<reference key="NSSuperview" ref="46900166"/>
-							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="435874284">
@@ -433,7 +432,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{50, 66}, {173, 17}}</string>
 							<reference key="NSSuperview" ref="46900166"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="310467137"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -452,7 +450,6 @@
 					</array>
 					<string key="NSFrameSize">{273, 115}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="660513586"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>
@@ -470,7 +467,6 @@
 						<string key="NSFrame">{{17, 3}, {168, 80}}</string>
 						<reference key="NSSuperview" ref="839230088"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="900356976">
@@ -2305,7 +2301,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="quit">{18, 18}</string>
-			<string key="setting">{512, 512}</string>
+			<string key="setting">{80, 80}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>

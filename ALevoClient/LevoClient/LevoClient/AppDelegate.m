@@ -272,17 +272,19 @@
 
 - (void)try2Login
 {
-    if (self.config.StopConnet==YES)return;
+    if (self.config.StopConnet==YES){
+        self.config.connetState=ConnetStateOffLine;
+        return;
+    }
     self.config.connetState=ConnetStateLgoing;
     [[LevoConnet sharedInstance] connetNeedInit:YES sucess:^{
-        NSLog(@"------>sucess");
+        NSLog(@"------> login sucess <------");
         self.config.connetTimeout=KConnetTimeOut;
         self.config.connetState=ConnetStateOnline;
         self.config.ReConnetTime=1;
         [self checkOnline];
     } andFail:^{
-        NSLog(@"------>fail");
-        self.config.connetState=ConnetStateOffLine;
+        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
         [self try2Login];
     }];
     [self performBlock:^{
@@ -326,14 +328,10 @@
 }
 - (IBAction)onExit:(id)sender
 {
-    @try {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [[LevoConnet sharedInstance] cancle];
-    }
-    @catch (NSException *exception) {
-    }
-    @finally {
-        [NSApp terminate:sender];
-    }
+    });
+    exit(1);
 }
 
 

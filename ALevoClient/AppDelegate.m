@@ -19,13 +19,12 @@
 - (void)start
 {
     NSString *path=[[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/LevoClient.app/Contents/MacOS/LevoClient"];
-    NSLog(@"login");
     STPrivilegedTask *ta=[[STPrivilegedTask alloc] init];
     [ta setLaunchPath:path];
     [ta launch];
     [ta waitUntilExit];
-    NSLog(@"--exit");
-    [NSApp terminate:nil];
+    NSLog(@"守护程序结束");
+    exit(1);
 }
 
 

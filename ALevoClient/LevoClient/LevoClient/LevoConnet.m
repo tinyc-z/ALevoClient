@@ -380,7 +380,7 @@ action_by_eap_type(enum EAPType pType,
             break;
         case EAP_REQUETS_MD5_CHALLENGE:
             state = ID_AUTHED;
-//            [[PreferencesModel sharedInstance] pushLog:@"发送MD5..."];
+            [[PreferencesModel sharedInstance] pushLog:@"发送MD5..."];
             fprintf(stdout, ">>Protocol: REQUEST MD5-Challenge(PASSWORD)\n");
             fill_password_md5((u_char*)header->eap_info_tailer,
                               header->eap_id);
