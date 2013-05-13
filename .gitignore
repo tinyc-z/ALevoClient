@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+*.swp
+*~.nib
+build/
+*.pbxuser
+*.perspective
+*.perspectivev3
+project.xcworkspace/
+xcuserdata/
+*~
+\#*
+.\#*%
+
