@@ -43,6 +43,7 @@
     if([[LevoConnet sharedInstance] isRunningCheck]){
         [self showAler:@"启动出错" context:@"程序可能没有root权限或者已经运行~！" action:@selector(onExit:)];
     }else{
+        [self creatUserDefault];
         self.config=[PreferencesModel sharedInstance];
         [self.config addObserver:self forKeyPath:KConnetSate options:NSKeyValueObservingOptionNew context:nil];
         [self initStatusBar];
@@ -68,6 +69,18 @@
         }else if (self.config.AutoLogin) {
             [self onLogin:nil];
         }
+    }
+}
+
+- (void)creatUserDefault
+{
+    NSUserDefaults *user=[NSUserDefaults standardUserDefaults];
+    if(![user objectForKey:@"firstTimeFlag"]){
+        [user setBool:YES forKey:KAutoLogin];
+        [user setBool:YES forKey:KAutoReConnet];
+        [user setObject:@"NO" forKey:@"firstTimeFlag"];
+        [user setInteger:5 forKey:KCheckOfflineTime];
+        [user synchronize];
     }
 }
 

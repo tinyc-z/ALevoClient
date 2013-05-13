@@ -10,16 +10,6 @@
 #import "LevoConnet.h"
 #import <objc/runtime.h>
 
-#define KUserName @"UserName"
-#define KUserPwd @"UserPwd"
-#define KAutoReConnet @"AutoReConnet"
-#define KAutoLogin @"AutoLogin"
-#define KCheckOfflineHost @"CheckOfflineHost"
-#define KCheckOfflineTime @"CheckOfflineTime"
-#define KDevice @"Device"
-
-#define DefaultCheckOfflineTime 5
-
 
 @implementation PreferencesModel
 
@@ -37,17 +27,10 @@ IMP_SINGLETON(PreferencesModel)
         NSUserDefaults *config=[NSUserDefaults standardUserDefaults];
         _UserName=[config stringForKey:KUserName];
         _UserPwd=[config stringForKey:KUserPwd];
-        if ([config objectForKey:KAutoReConnet]==nil) {
-            _AutoReConnet=YES;
-        }else{
-            _AutoReConnet=[config boolForKey:KAutoReConnet];
-        }
-        if ([config objectForKey:KAutoLogin]==nil) {
-            _AutoLogin=YES;
-        }else{
-            _AutoLogin=[config boolForKey:KAutoLogin];
-        }
-        
+
+        _AutoReConnet=[config boolForKey:KAutoReConnet];
+        _AutoLogin=[config boolForKey:KAutoLogin];
+
         _CheckOfflineHost=[config stringForKey:KCheckOfflineHost];
         _CheckOfflineTime=(int)[config integerForKey:KCheckOfflineTime];
         
@@ -100,9 +83,9 @@ IMP_SINGLETON(PreferencesModel)
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-//    if ([change[@"new"]isEqualTo:change[@"old"]]) {
-//        return;
-//    }
+    if ([change[@"new"]isEqualTo:change[@"old"]]) {
+        return;
+    }
     NSLog(@"model->%@",change);
     if ([keyPath isEqualToString:KUserName]||
         [keyPath isEqualToString:KUserPwd]||

@@ -11,6 +11,16 @@
 #define KConnetSate @"connetState"
 #define KConnetLogs @"logsCount"
 
+#define KUserName @"UserName"
+#define KUserPwd @"UserPwd"
+#define KAutoReConnet @"AutoReConnet"
+#define KAutoLogin @"AutoLogin"
+#define KCheckOfflineHost @"CheckOfflineHost"
+#define KCheckOfflineTime @"CheckOfflineTime"
+#define KDevice @"Device"
+
+#define DefaultCheckOfflineTime 5
+
 typedef enum{
     ConnetStateOffLine,
     ConnetStateOnline,
