@@ -1,0 +1,16 @@
+//
+// Prefix header for all source files of the 'LevoClient' target in the 'LevoClient' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+    #import "Vars.h"
+    #import "NSView+Additions.h"
+    #import "NSObject+Utils.h"
+#endif
+
+#ifndef DEBUG
+#define NSLog(...) {}
+#define fprintf(...) {}
+#define printf(...) {}
+#endif

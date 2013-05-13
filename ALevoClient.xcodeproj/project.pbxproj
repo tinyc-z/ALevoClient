@@ -1,0 +1,396 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		472062C0173CC81400A8B4AF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 472062BF173CC81400A8B4AF /* Cocoa.framework */; };
+		472062CA173CC81400A8B4AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 472062C8173CC81400A8B4AF /* InfoPlist.strings */; };
+		472062CC173CC81400A8B4AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 472062CB173CC81400A8B4AF /* main.m */; };
+		472062D0173CC81400A8B4AF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 472062CE173CC81400A8B4AF /* Credits.rtf */; };
+		472062D3173CC81400A8B4AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 472062D2173CC81400A8B4AF /* AppDelegate.m */; };
+		472062D6173CC81400A8B4AF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 472062D4173CC81400A8B4AF /* MainMenu.xib */; };
+		472062DE173CC82900A8B4AF /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 472062DD173CC82900A8B4AF /* STPrivilegedTask.m */; };
+		47206313173CC9AF00A8B4AF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47206312173CC9AF00A8B4AF /* Security.framework */; };
+		47206319173CD40E00A8B4AF /* LevoClient.app in Resources */ = {isa = PBXBuildFile; fileRef = 47206318173CD40E00A8B4AF /* LevoClient.app */; };
+		47CBE6C4173CE35E00C063C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 47CBE6C3173CE35E00C063C9 /* icon.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4720630C173CC91600A8B4AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 47206308173CC91600A8B4AF /* LevoClient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 472062E8173CC8F600A8B4AF;
+			remoteInfo = LevoClient;
+		};
+		47206315173CD16800A8B4AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 47206308173CC91600A8B4AF /* LevoClient.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 472062E7173CC8F600A8B4AF;
+			remoteInfo = LevoClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		472062BC173CC81400A8B4AF /* ALevoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALevoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		472062BF173CC81400A8B4AF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		472062C2173CC81400A8B4AF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		472062C3173CC81400A8B4AF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		472062C4173CC81400A8B4AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		472062C7173CC81400A8B4AF /* ALevoClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ALevoClient-Info.plist"; sourceTree = "<group>"; };
+		472062C9173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		472062CB173CC81400A8B4AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		472062CD173CC81400A8B4AF /* ALevoClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ALevoClient-Prefix.pch"; sourceTree = "<group>"; };
+		472062CF173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		472062D1173CC81400A8B4AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		472062D2173CC81400A8B4AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		472062D5173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		472062DC173CC82900A8B4AF /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
+		472062DD173CC82900A8B4AF /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
+		47206308173CC91600A8B4AF /* LevoClient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LevoClient.xcodeproj; path = ALevoClient/LevoClient/LevoClient.xcodeproj; sourceTree = "<group>"; };
+		47206312173CC9AF00A8B4AF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		47206318173CD40E00A8B4AF /* LevoClient.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = LevoClient.app; sourceTree = "<group>"; };
+		472ADC9D17409F57005F0529 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		472ADC9E17409F57005F0529 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		472ADC9F17409F57005F0529 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
+		47CBE6C3173CE35E00C063C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		472062B9173CC81400A8B4AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47206313173CC9AF00A8B4AF /* Security.framework in Frameworks */,
+				472062C0173CC81400A8B4AF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		472062B3173CC81400A8B4AF = {
+			isa = PBXGroup;
+			children = (
+				47206308173CC91600A8B4AF /* LevoClient.xcodeproj */,
+				472062C5173CC81400A8B4AF /* ALevoClient */,
+				472062BE173CC81400A8B4AF /* Frameworks */,
+				472062BD173CC81400A8B4AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		472062BD173CC81400A8B4AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				472062BC173CC81400A8B4AF /* ALevoClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		472062BE173CC81400A8B4AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				47206312173CC9AF00A8B4AF /* Security.framework */,
+				472062BF173CC81400A8B4AF /* Cocoa.framework */,
+				472062C1173CC81400A8B4AF /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		472062C1173CC81400A8B4AF /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				472062C2173CC81400A8B4AF /* AppKit.framework */,
+				472062C3173CC81400A8B4AF /* CoreData.framework */,
+				472062C4173CC81400A8B4AF /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		472062C5173CC81400A8B4AF /* ALevoClient */ = {
+			isa = PBXGroup;
+			children = (
+				47206317173CD3F500A8B4AF /* MainApp */,
+				472062D1173CC81400A8B4AF /* AppDelegate.h */,
+				472062D2173CC81400A8B4AF /* AppDelegate.m */,
+				472062D4173CC81400A8B4AF /* MainMenu.xib */,
+				472062DC173CC82900A8B4AF /* STPrivilegedTask.h */,
+				472062DD173CC82900A8B4AF /* STPrivilegedTask.m */,
+				472062C6173CC81400A8B4AF /* Supporting Files */,
+			);
+			path = ALevoClient;
+			sourceTree = "<group>";
+		};
+		472062C6173CC81400A8B4AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47CBE6C3173CE35E00C063C9 /* icon.icns */,
+				472062C7173CC81400A8B4AF /* ALevoClient-Info.plist */,
+				472062C8173CC81400A8B4AF /* InfoPlist.strings */,
+				472062CB173CC81400A8B4AF /* main.m */,
+				472062CD173CC81400A8B4AF /* ALevoClient-Prefix.pch */,
+				472062CE173CC81400A8B4AF /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		47206309173CC91600A8B4AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4720630D173CC91600A8B4AF /* LevoClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		47206317173CD3F500A8B4AF /* MainApp */ = {
+			isa = PBXGroup;
+			children = (
+				47206318173CD40E00A8B4AF /* LevoClient.app */,
+			);
+			name = MainApp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		472062BB173CC81400A8B4AF /* ALevoClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 472062D9173CC81400A8B4AF /* Build configuration list for PBXNativeTarget "ALevoClient" */;
+			buildPhases = (
+				472062B8173CC81400A8B4AF /* Sources */,
+				472062B9173CC81400A8B4AF /* Frameworks */,
+				472062BA173CC81400A8B4AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47206316173CD16800A8B4AF /* PBXTargetDependency */,
+			);
+			name = ALevoClient;
+			productName = ALevoClient;
+			productReference = 472062BC173CC81400A8B4AF /* ALevoClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		472062B4173CC81400A8B4AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = iBcker;
+			};
+			buildConfigurationList = 472062B7173CC81400A8B4AF /* Build configuration list for PBXProject "ALevoClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"zh-Hans",
+			);
+			mainGroup = 472062B3173CC81400A8B4AF;
+			productRefGroup = 472062BD173CC81400A8B4AF /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 47206309173CC91600A8B4AF /* Products */;
+					ProjectRef = 47206308173CC91600A8B4AF /* LevoClient.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				472062BB173CC81400A8B4AF /* ALevoClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4720630D173CC91600A8B4AF /* LevoClient.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = LevoClient.app;
+			remoteRef = 4720630C173CC91600A8B4AF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		472062BA173CC81400A8B4AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				472062CA173CC81400A8B4AF /* InfoPlist.strings in Resources */,
+				472062D0173CC81400A8B4AF /* Credits.rtf in Resources */,
+				472062D6173CC81400A8B4AF /* MainMenu.xib in Resources */,
+				47206319173CD40E00A8B4AF /* LevoClient.app in Resources */,
+				47CBE6C4173CE35E00C063C9 /* icon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		472062B8173CC81400A8B4AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				472062CC173CC81400A8B4AF /* main.m in Sources */,
+				472062D3173CC81400A8B4AF /* AppDelegate.m in Sources */,
+				472062DE173CC82900A8B4AF /* STPrivilegedTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		47206316173CD16800A8B4AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LevoClient;
+			targetProxy = 47206315173CD16800A8B4AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		472062C8173CC81400A8B4AF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				472062C9173CC81400A8B4AF /* en */,
+				472ADC9E17409F57005F0529 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		472062CE173CC81400A8B4AF /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				472062CF173CC81400A8B4AF /* en */,
+				472ADC9F17409F57005F0529 /* zh-Hans */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		472062D4173CC81400A8B4AF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				472062D5173CC81400A8B4AF /* en */,
+				472ADC9D17409F57005F0529 /* zh-Hans */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		472062D7173CC81400A8B4AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		472062D8173CC81400A8B4AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		472062DA173CC81400A8B4AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ALevoClient/ALevoClient-Prefix.pch";
+				INFOPLIST_FILE = "ALevoClient/ALevoClient-Info.plist";
+				PRODUCT_NAME = ALevoClient;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		472062DB173CC81400A8B4AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ALevoClient/ALevoClient-Prefix.pch";
+				INFOPLIST_FILE = "ALevoClient/ALevoClient-Info.plist";
+				PRODUCT_NAME = ALevoClient;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		472062B7173CC81400A8B4AF /* Build configuration list for PBXProject "ALevoClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				472062D7173CC81400A8B4AF /* Debug */,
+				472062D8173CC81400A8B4AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		472062D9173CC81400A8B4AF /* Build configuration list for PBXNativeTarget "ALevoClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				472062DA173CC81400A8B4AF /* Debug */,
+				472062DB173CC81400A8B4AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 472062B4173CC81400A8B4AF /* Project object */;
+}
