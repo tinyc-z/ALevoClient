@@ -18,7 +18,7 @@
 <br/>
 <br/>
 ## 其他
-- 项目主页: <https://github.com/iBcker/ALevoClient>
+- 项目主页: <http://ibcker.github.io/ALevoClient>
 - 作者微博: <http://weibo.com/bcker>
 - 联系邮箱: <happymiyu@gmail.com>
 
