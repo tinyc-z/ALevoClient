@@ -12,7 +12,10 @@
 
 #define MaxLogNum 100
 
+@interface PreferencesModel()
 
+@property(strong)NSUserDefaults *config;
+@end
 @implementation PreferencesModel
 
 IMP_SINGLETON(PreferencesModel)
@@ -21,24 +24,22 @@ IMP_SINGLETON(PreferencesModel)
 {
     if (self=[super init]) {
         self.logs=[[NSMutableArray alloc] initWithCapacity:5];
+        self.config=[NSUserDefaults standardUserDefaults];
+        [self creatUserDefault];
+        [self readVersion];
         
-        [[NSBundle mainBundle] infoDictionary];
-        NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-        _versionStr=[NSString stringWithFormat:@"%@%@",[infoDict objectForKey:@"CFBundleShortVersionString"],[infoDict objectForKey:@"CFBundleVersion"]];
-        
-        NSUserDefaults *config=[NSUserDefaults standardUserDefaults];
-        _UserName=[config stringForKey:KUserName];
-        _UserPwd=[config stringForKey:KUserPwd];
+        _UserName=[self.config stringForKey:KUserName];
+        _UserPwd=[self.config stringForKey:KUserPwd];
 
-        _AutoReConnet=[config boolForKey:KAutoReConnet];
-        _AutoLogin=[config boolForKey:KAutoLogin];
+        _AutoReConnet=[self.config boolForKey:KAutoReConnet];
+        _AutoLogin=[self.config boolForKey:KAutoLogin];
 
-        _CheckOfflineHost=[config stringForKey:KCheckOfflineHost];
-        _CheckOfflineTime=(int)[config integerForKey:KCheckOfflineTime];
+        _CheckOfflineHost=[self.config stringForKey:KCheckOfflineHost];
+        _CheckOfflineTime=(int)[self.config integerForKey:KCheckOfflineTime];
         
         if (_CheckOfflineTime<=0)_CheckOfflineTime=DefaultCheckOfflineTime;
         
-        _Device=[config stringForKey:KDevice];
+        _Device=[self.config stringForKey:KDevice];
         
         [self addObserver:self forKeyPath:KUserName options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         [self addObserver:self forKeyPath:KUserPwd options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
@@ -50,6 +51,31 @@ IMP_SINGLETON(PreferencesModel)
     }
     return self;
 }
+
+- (void)creatUserDefault
+{
+    if(![self.config objectForKey:@"firstTimeFlag"]){
+        [self.config setBool:YES forKey:KAutoLogin];
+        [self.config setBool:YES forKey:KAutoReConnet];
+        [self.config setObject:@"NO" forKey:@"firstTimeFlag"];
+        [self.config setObject:@"" forKey:KUserName];
+        [self.config setObject:@"" forKey:KUserPwd];
+        [self.config setObject:@"" forKey:KDevice];
+        [self.config setObject:@"" forKey:KCheckOfflineHost];
+        [self.config setInteger:5 forKey:KCheckOfflineTime];
+        [self.config synchronize];
+        [self pushLog:@"creatUserDefault"];
+    }
+}
+
+- (void)readVersion
+{
+    [[NSBundle mainBundle] infoDictionary];
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    _versionStr=[NSString stringWithFormat:@"%@%@",[infoDict objectForKey:@"CFBundleShortVersionString"],[infoDict objectForKey:@"CFBundleVersion"]];
+}
+
+
 - (void)pushErrorLog:(NSString *)log
 {
     [self pushLog:log];
@@ -97,15 +123,15 @@ IMP_SINGLETON(PreferencesModel)
         [keyPath isEqualToString:KUserPwd]||
         [keyPath isEqualToString:KCheckOfflineHost]||
         [keyPath isEqualToString:KDevice]) {
-        [[NSUserDefaults standardUserDefaults] setObject:change[@"new"] forKey:keyPath];
+        [self.config setObject:change[@"new"] forKey:keyPath];
     }else if ([keyPath isEqualToString:KAutoReConnet]||
               [keyPath isEqualToString:KAutoLogin]
               ) {
-        [[NSUserDefaults standardUserDefaults] setBool:[change[@"new"] boolValue] forKey:keyPath];
+        [self.config setBool:[change[@"new"] boolValue] forKey:keyPath];
     }else if ([keyPath isEqualToString:KCheckOfflineTime]) {
-        [[NSUserDefaults standardUserDefaults] setInteger:[change[@"new"] integerValue] forKey:keyPath];
+        [self.config setInteger:[change[@"new"] integerValue] forKey:keyPath];
     }
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.config synchronize];
     
 }
 

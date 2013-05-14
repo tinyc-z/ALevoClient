@@ -41,11 +41,11 @@
     self.AutoRelogin.state=self.config.AutoReConnet?1:0;
     self.AutoLogin.state=self.config.AutoLogin?1:0;
     
-    if (self.config.CheckOfflineHost) {
+    if (self.config.CheckOfflineHost.length>0) {
         self.CheckOfflineHost.stringValue=self.config.CheckOfflineHost;
     }else{
         NSString *host=[[LevoConnet sharedInstance] getGateWay];
-        self.CheckOfflineHost.stringValue=host.length!=0?host:@"8.8.8.8";
+        self.CheckOfflineHost.stringValue=host.length>0?host:@"8.8.8.8";
     }
     
     //网卡
@@ -83,6 +83,10 @@
 
 - (void)onApply:(id)sender
 {
+    if (self.UserName.stringValue.length==0) {
+        [self.UserName becomeFirstResponder];
+        return;
+    }
     self.config.UserName=self.UserName.stringValue;
     self.config.UserPwd=self.UserPwd.stringValue;
     self.config.AutoReConnet=self.AutoRelogin.state==0?NO:YES;
@@ -90,9 +94,10 @@
     self.config.Device=[self.DeviceList selectedItem].title;
     self.config.CheckOfflineTime=[self.CheckOfflineTime selectedItem].tag;
     self.config.CheckOfflineHost=self.CheckOfflineHost.stringValue;
-    
-    [self.window close];
+    [self.delegate onPreferencesApply];
+    [self close];
 }
+
 - (IBAction)onAbout:(id)sender
 {
     self.LbAboutVersion.stringValue=[NSString stringWithFormat:@"Version  %@",self.config.versionStr];

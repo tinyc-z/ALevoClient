@@ -43,8 +43,8 @@
     if([[LevoConnet sharedInstance] isRunningCheck]){
         [self showAler:@"启动出错" context:@"程序可能没有root权限或者已经运行~！" action:@selector(onExit:)];
     }else{
-        [self creatUserDefault];
         self.config=[PreferencesModel sharedInstance];
+        self.preferencesWC.delegate=self;
         [self.config addObserver:self forKeyPath:KConnetSate options:NSKeyValueObservingOptionNew context:nil];
         [self initStatusBar];
         self.popover.behavior = NSPopoverBehaviorTransient;
@@ -71,19 +71,6 @@
         }
     }
 }
-
-- (void)creatUserDefault
-{
-    NSUserDefaults *user=[NSUserDefaults standardUserDefaults];
-    if(![user objectForKey:@"firstTimeFlag"]){
-        [user setBool:YES forKey:KAutoLogin];
-        [user setBool:YES forKey:KAutoReConnet];
-        [user setObject:@"NO" forKey:@"firstTimeFlag"];
-        [user setInteger:5 forKey:KCheckOfflineTime];
-        [user synchronize];
-    }
-}
-
 
 - (void)timerAction:(id)sender
 {
@@ -183,14 +170,10 @@
 
 - (void)showPoper:(id)sender;
 {
-    if (self.preferencesWC.window.isVisible) {
-        [self showPreferences];
-    }else{
-        self.deviceInfo.lbDev.stringValue=[NSString stringWithFormat:@"%@/%@",[[LevoConnet sharedInstance] selectedDevName],[[LevoConnet sharedInstance] readIpString]];
-        self.deviceInfo.lbMac.stringValue=[[LevoConnet sharedInstance] readMacAddress];
-        [self.popover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
-        [NSApp activateIgnoringOtherApps:YES];
-    }
+    self.deviceInfo.lbDev.stringValue=[NSString stringWithFormat:@"%@/%@",[[LevoConnet sharedInstance] selectedDevName],[[LevoConnet sharedInstance] readIpString]];
+    self.deviceInfo.lbMac.stringValue=[[LevoConnet sharedInstance] readMacAddress];
+    [self.popover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (void)showAler:(NSString *)title context:(NSString *)context action:(SEL)selecter;
@@ -208,7 +191,11 @@
 
 - (IBAction)onMenuAction:(id)sender;
 {
-    [self showPoper:sender];
+    if (self.preferencesWC.window.isVisible) {
+        [self showPreferences];
+    }else{
+        [self showPoper:sender];
+    }
 }
 
 
@@ -344,6 +331,14 @@
     if ([keyPath isEqualToString:KConnetSate]) {
         ConnetState state=[change[@"new"] intValue];
         [self updateView:state];
+    }
+}
+
+- (void)onPreferencesApply
+{
+    [self showPoper:self.statusBarButton];
+    if (self.config.AutoLogin) {
+        [self onLogin:nil];
     }
 }
 

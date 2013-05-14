@@ -8,7 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol PreferencesDelegate <NSObject>
+@required
+- (void)onPreferencesApply;
+@end
+
 @interface PreferencesWindowController : NSWindowController
+
+@property(assign)id<PreferencesDelegate> delegate;
+
 @property (weak) IBOutlet NSTabView *tabView;
 @property (weak) IBOutlet NSPopUpButton *DeviceList;
 

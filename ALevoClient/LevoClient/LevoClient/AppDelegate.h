@@ -10,8 +10,9 @@
 #import "NetSpeedInfView.h"
 #import "DeviceInfoView.h"
 #import "LogView.h"
+#import "PreferencesWindowController.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate,NSWindowDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate,NSWindowDelegate,PreferencesDelegate>
 
 @property (assign) IBOutlet NSWindow *alert;
 @property (weak) IBOutlet NSButton *alertBnOk;
