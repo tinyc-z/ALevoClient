@@ -114,7 +114,6 @@ enum STATE {
 };
 
 void    send_eap_packet(enum EAPType send_type);
-void    show_usage();
 char*   get_md5_digest(const char* str, size_t len);
 void    action_by_eap_type(enum EAPType pType,
                            const struct sniff_eap_header *header);
@@ -249,40 +248,6 @@ print_server_info (const u_char *str)
     }
     [[PreferencesModel sharedInstance] pushLog:[NSString stringWithUTF8String:info_str]];
     fprintf (stdout, "&&Server Info: %s\n", info_str);
-}
-
-void
-show_usage()
-{
-    printf( "\n"
-           "ZlevoClient %s \n"
-           "\t  -- Supllicant for Lenovo 802.1x Authentication.\n"
-           "\n"
-           "  Usage:\n"
-           "\tRun under root privilege, usually by `sudo', with your \n"
-           "\taccount info in arguments:\n\n"
-           "\t-u, --username           Your username.\n"
-           "\t-p, --password           Your password.\n"
-           "\n"
-           "  Optional Arguments:\n\n"
-           "\t--device              Specify which device to use.\n"
-           "\t                      Default is usually eth0.\n\n"
-           
-           "\t-b, --background      Program fork to background after authentication.\n\n"
-           "\t-l                    Tell the process to Logoff.\n\n"
-           "\t--debug               Show debug message.\n\n"
-           "\t-h, --help            Show this help.\n\n"
-           "\n"
-           "  About ZlevoClient:\n\n"
-           "\tThis program is a supplicat program compatible for LENOVO ,\n"
-           "\t802.1x EAPOL protocol, which was used for  Internet control.\n"
-           
-           "\tZlevoClient is a software developed individually, with NO any rela-\n"
-           "\tiontship with Lenovo company.\n\n\n"
-           
-           "\tAnother PT work. Blog: http://apt-blog.co.cc\n"
-           "\t\t\t\t\t\t\t\t2009.05.24\n",
-           LENOVO_VER);
 }
 
 /*
@@ -798,8 +763,8 @@ program_running_check()
     init_info();
     init_device(idev);
     init_frames ();
-    signal (SIGINT, signal_interrupted);
-    signal (SIGTERM, signal_interrupted);
+//    signal (SIGINT, signal_interrupted);
+//    signal (SIGTERM, signal_interrupted);
 //    signal (SIGALRM, keep_alive);
 //    alarm(KEEP_ALIVE_TIME);
 }

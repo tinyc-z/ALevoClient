@@ -9,6 +9,7 @@
     #import "NSObject+Utils.h"
 #endif
 
+
 #ifndef DEBUG
 #define NSLog(...) {}
 #define fprintf(...) {}

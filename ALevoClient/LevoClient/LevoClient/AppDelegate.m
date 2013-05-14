@@ -222,7 +222,7 @@
         }else{
             [self.config cleanLog];
             self.config.StopConnet=NO;
-            self.config.ReConnetTime=1;
+            self.config.ReConnetTime=0;
             [self try2Login];
         }
     }
@@ -277,11 +277,12 @@
         return;
     }
     self.config.connetState=ConnetStateLgoing;
+    self.config.ReConnetTime+=1;
     [[LevoConnet sharedInstance] connetNeedInit:YES sucess:^{
         NSLog(@"------> login sucess <------");
         self.config.connetTimeout=KConnetTimeOut;
         self.config.connetState=ConnetStateOnline;
-        self.config.ReConnetTime=1;
+        self.config.ReConnetTime=0;
         [self checkOnline];
     } andFail:^{
         NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
@@ -294,7 +295,6 @@
 - (void)cancleHandler
 {
     if(self.config.connetState!=ConnetStateOnline){
-        self.config.ReConnetTime+=1;
         if (self.config.connetTimeout<15) {
             self.config.connetTimeout+=2;
         }

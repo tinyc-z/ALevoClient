@@ -22,8 +22,8 @@
     STPrivilegedTask *ta=[[STPrivilegedTask alloc] init];
     [ta setLaunchPath:path];
     [ta launch];
-    [ta waitUntilExit];
-    NSLog(@"守护程序结束");
+//    [ta waitUntilExit];
+    NSLog(@"ALevoClient启动器结束");
     exit(1);
 }
 
