@@ -24,14 +24,16 @@
 
 >20013-05-11 吉林大学·珠海学院 &gt; @iBcker
 
-### 软件截图
+## 软件截图
 
 ![Mou icon](https://raw.github.com/iBcker/ALevoClient/master/products/snapshot2.png)
 <br/>
 <br/>
 ![Mou icon](https://raw.github.com/iBcker/ALevoClient/master/products/snapshot1.png)
-
-### 更新
+<br/>
+<br/>
+<br/>
+## 更新
 - 解决稳定性问题
 - 解决断网重连会开启多条线程的bug
 - 增加防止同时打开多次的逻辑
