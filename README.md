@@ -32,6 +32,9 @@
 ![Mou icon](https://raw.github.com/iBcker/ALevoClient/master/products/snapshot1.png)
 <br/>
 <br/>
+![Mou icon](https://raw.github.com/iBcker/ALevoClient/master/products/snapshot3.png)
+<br/>
+<br/>
 <br/>
 ## 更新
 - 初次启动生成默认配置
