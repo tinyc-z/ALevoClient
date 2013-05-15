@@ -42,13 +42,10 @@
 		472062C3173CC81400A8B4AF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		472062C4173CC81400A8B4AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		472062C7173CC81400A8B4AF /* ALevoClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ALevoClient-Info.plist"; sourceTree = "<group>"; };
-		472062C9173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		472062CB173CC81400A8B4AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		472062CD173CC81400A8B4AF /* ALevoClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ALevoClient-Prefix.pch"; sourceTree = "<group>"; };
-		472062CF173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		472062D1173CC81400A8B4AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		472062D2173CC81400A8B4AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		472062D5173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		47206308173CC91600A8B4AF /* LevoClient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LevoClient.xcodeproj; path = ALevoClient/LevoClient/LevoClient.xcodeproj; sourceTree = "<group>"; };
 		47206312173CC9AF00A8B4AF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		47206318173CD40E00A8B4AF /* LevoClient.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = LevoClient.app; sourceTree = "<group>"; };
@@ -257,7 +254,6 @@
 		472062C8173CC81400A8B4AF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				472062C9173CC81400A8B4AF /* en */,
 				472ADC9E17409F57005F0529 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
@@ -266,7 +262,6 @@
 		472062CE173CC81400A8B4AF /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				472062CF173CC81400A8B4AF /* en */,
 				472ADC9F17409F57005F0529 /* zh-Hans */,
 			);
 			name = Credits.rtf;
@@ -275,7 +270,6 @@
 		472062D4173CC81400A8B4AF /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				472062D5173CC81400A8B4AF /* en */,
 				472ADC9D17409F57005F0529 /* zh-Hans */,
 			);
 			name = MainMenu.xib;
