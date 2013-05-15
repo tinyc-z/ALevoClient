@@ -317,20 +317,19 @@ action_by_eap_type(enum EAPType pType,
             }
             fprintf(stdout, ">>Protocol: EAP_FAILURE\n");
             [[PreferencesModel sharedInstance] pushLog:@"EAP验证失败"];
-            if(state == ONLINE){
-                fprintf(stdout, "&&Info: SERVER Forced Logoff\n");
-                [[PreferencesModel sharedInstance] pushLog:@"SERVER Forced Logoff"];
-            }
-            if (state == STARTED){
-                [[PreferencesModel sharedInstance] pushLog:@"用户名错误"];
-                fprintf(stdout, "&&Info: Invalid Username or Client info mismatch.\n");
-            }
-            if (state == ID_AUTHED){
-                [[PreferencesModel sharedInstance] pushLog:@"密码错误"];
-                fprintf(stdout, "&&Info: Invalid Password.\n");
-            }
-            
-//            print_server_info (header->eap_info_tailer);
+//            if(state == ONLINE){
+//                fprintf(stdout, "&&Info: SERVER Forced Logoff\n");
+//                [[PreferencesModel sharedInstance] pushLog:@"SERVER Forced Logoff"];
+//            }
+//            if (state == STARTED){
+//                [[PreferencesModel sharedInstance] pushLog:@"用户名错误"];
+//                fprintf(stdout, "&&Info: Invalid Username or Client info mismatch.\n");
+//            }
+//            if (state == ID_AUTHED){
+//                [[PreferencesModel sharedInstance] pushLog:@"密码错误"];
+//                fprintf(stdout, "&&Info: Invalid Password.\n");
+//            }  
+            print_server_info (header->eap_info_tailer);
             state = READY;
             if (handle) {
                 pcap_breakloop (handle);
