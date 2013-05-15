@@ -328,7 +328,7 @@ action_by_eap_type(enum EAPType pType,
 //            if (state == ID_AUTHED){
 //                [[PreferencesModel sharedInstance] pushLog:@"密码错误"];
 //                fprintf(stdout, "&&Info: Invalid Password.\n");
-//            }  
+//            }
             print_server_info (header->eap_info_tailer);
             state = READY;
             if (handle) {
