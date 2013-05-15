@@ -10,5 +10,9 @@
 
 int main(int argc, char *argv[])
 {
+    //杀死启动器进程
+    char cmd[100]="kill ";
+    strcat(cmd, argv[1]);
+    system(cmd);
     return NSApplicationMain(argc, (const char **)argv);
 }
