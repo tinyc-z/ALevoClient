@@ -42,13 +42,10 @@
 		472062EF173CC8F600A8B4AF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		472062F0173CC8F600A8B4AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		472062F3173CC8F600A8B4AF /* LevoClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LevoClient-Info.plist"; sourceTree = "<group>"; };
-		472062F5173CC8F600A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		472062F7173CC8F600A8B4AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		472062F9173CC8F600A8B4AF /* LevoClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LevoClient-Prefix.pch"; sourceTree = "<group>"; };
-		472062FB173CC8F600A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		472062FD173CC8F600A8B4AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		472062FE173CC8F600A8B4AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		47206301173CC8F600A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		472ADC9317400F2E005F0529 /* LogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogView.h; sourceTree = "<group>"; };
 		472ADC9417400F2E005F0529 /* LogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogView.m; sourceTree = "<group>"; };
 		472ADC9617402138005F0529 /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
@@ -305,7 +302,6 @@
 		472062F4173CC8F600A8B4AF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				472062F5173CC8F600A8B4AF /* en */,
 				472ADC9B17409F57005F0529 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
@@ -314,7 +310,6 @@
 		472062FA173CC8F600A8B4AF /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				472062FB173CC8F600A8B4AF /* en */,
 				472ADC9C17409F57005F0529 /* zh-Hans */,
 			);
 			name = Credits.rtf;
@@ -323,7 +318,6 @@
 		47206300173CC8F600A8B4AF /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				47206301173CC8F600A8B4AF /* en */,
 				472ADC9A17409F57005F0529 /* zh-Hans */,
 			);
 			name = MainMenu.xib;
