@@ -18,14 +18,15 @@
 
 - (void)start
 {
+    pid_t pid = getpid();//获取pid，让子程序启动后将其干掉
     NSString * output = nil;
     NSString * processErrorDescription = nil;
     NSString *path=[[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/LevoClient.app/Contents/MacOS/LevoClient"];
     BOOL success = [self runProcessAsAdministrator:path
-                                     withArguments:@[]
+                                     withArguments:@[[NSString stringWithFormat:@"%d",pid]]
                                             output:&output
                                   errorDescription:&processErrorDescription];
-    NSLog(@"%@",processErrorDescription);
+    NSLog(@"res-%d->%@",success,processErrorDescription);
 
     //STPrivilegedTask 怎么竟出毛病···晕死···不用你试试···
 //    NSString *path=[[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/LevoClient.app/Contents/MacOS/LevoClient"];
@@ -40,7 +41,7 @@
 - (void)doExit
 {
     NSLog(@"ALevoClient启动器结束");
-    exit(1);
+    exit(0);
 }
 
 

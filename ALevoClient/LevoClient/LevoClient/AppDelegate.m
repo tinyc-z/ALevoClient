@@ -40,9 +40,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-//    [self test];
-//    [self initStatusBar];
-//    return;
+    
     if([[LevoConnet sharedInstance] isRunningCheck]){
         [self showAler:@"启动出错" context:@"程序可能没有root权限或者已经运行~！" action:@selector(onExit:)];
     }else{
@@ -259,21 +257,6 @@
         }
     });
 }
-int tttt=0;
-
-- (void)test
-{
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
-    [self.config pushLog:@"log -->"];
-    [self performSelector:@selector(test) withObject:nil afterDelay:0.5];
-}
-
 
 - (void)try2Login
 {
