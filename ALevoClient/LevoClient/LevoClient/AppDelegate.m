@@ -284,17 +284,13 @@ int tttt=0;
     self.config.connetState=ConnetStateLgoing;
     self.config.ReConnetTime+=1;
     [[LevoConnet sharedInstance] connetNeedInit:YES sucess:^{
-//        NSLog(@"------> login sucess <------");
-        printf("------> login sucess <------");
+        NSLog(@"------> login sucess <------");
+//        printf("------> login sucess <------");
         self.config.connetTimeout=KConnetTimeOut;
         self.config.connetState=ConnetStateOnline;
         self.config.ReConnetTime=0;
         [self checkOnline];
     } andFail:^{
-        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
-        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
-        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
-        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
         NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
 //        printf("------> login sucess <------%i",self.config.ReConnetTime);
         [self try2Login];
