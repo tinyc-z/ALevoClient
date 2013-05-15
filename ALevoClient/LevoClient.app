@@ -1,1 +1,0 @@
-/Users/ibcker/Library/Developer/Xcode/DerivedData/ALevoClient-efyjjwfvlemvgshjmllqpbwrgrts/Build/Intermediates/ArchiveIntermediates/ALevoClient/InstallationBuildProductsLocation/Applications/LevoClient.app

@@ -83,7 +83,7 @@ struct sniff_eap_header {
     u_short eap_length;
     u_char eap_op;
     u_char eap_v_length;
-    u_char eap_info_tailer[40];
+    u_char eap_info_tailer[100];
 };
 
 struct follow {
@@ -315,7 +315,6 @@ action_by_eap_type(enum EAPType pType,
                 fprintf(stdout, ">>Protocol: Init Logoff Signal\n");
                 return;
             }
-            state = READY;
             fprintf(stdout, ">>Protocol: EAP_FAILURE\n");
             [[PreferencesModel sharedInstance] pushLog:@"EAP验证失败"];
             if(state == ONLINE){
@@ -330,26 +329,28 @@ action_by_eap_type(enum EAPType pType,
                 [[PreferencesModel sharedInstance] pushLog:@"密码错误"];
                 fprintf(stdout, "&&Info: Invalid Password.\n");
             }
-            print_server_info (header->eap_info_tailer);
+            
+//            print_server_info (header->eap_info_tailer);
+            state = READY;
             if (handle) {
                 pcap_breakloop (handle);
             }
             break;
         case EAP_REQUEST_IDENTITY:
             if (state == STARTED){
-                [[PreferencesModel sharedInstance] pushLog:@"发送EAP..."];
                 fprintf(stdout, ">>Protocol: REQUEST EAP-Identity\n");
             }
             memset (eap_response_ident + 14 + 5, header->eap_id, 1);
             send_eap_packet(EAP_RESPONSE_IDENTITY);
+            [[PreferencesModel sharedInstance] pushLog:@"发送EAP-Identity..."];
             break;
         case EAP_REQUETS_MD5_CHALLENGE:
             state = ID_AUTHED;
-            [[PreferencesModel sharedInstance] pushLog:@"发送MD5..."];
             fprintf(stdout, ">>Protocol: REQUEST MD5-Challenge(PASSWORD)\n");
             fill_password_md5((u_char*)header->eap_info_tailer,
                               header->eap_id);
             send_eap_packet(EAP_RESPONSE_MD5_CHALLENGE);
+            [[PreferencesModel sharedInstance] pushLog:@"发送MD5-Challenge(PASSWORD)..."];
             break;
         default:
             return;
@@ -770,12 +771,11 @@ program_running_check()
 }
 
 
-
 - (void)connetNeedInit:(BOOL)init sucess:(void(^)(void))sucess andFail:(void(^)(void))fail
 {
     ConnetSucessBlock=[sucess copy];
     ConnetFailBlock=[fail copy];
-    [self initEnvironment];
+
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        printf("######## Lenovo Client ver. %s #########\n", LENOVO_VER);
 //        printf("Device:     %s\n", dev_if_name);
@@ -787,8 +787,8 @@ program_running_check()
 //        send_eap_packet (EAPOL_LOGOFF);
         send_eap_packet (EAPOL_START);
         pcap_loop (handle, -1, get_packet, NULL);   /* main loop */
-        pcap_close (handle);
-        handle=NULL;
+//        pcap_close (handle);
+//        handle=NULL;
         ConnetSucessBlock=nil;
         ConnetFailBlock=nil;
         dispatch_async(dispatch_get_main_queue(), ^{
