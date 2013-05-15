@@ -13,7 +13,6 @@
 		472062D0173CC81400A8B4AF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 472062CE173CC81400A8B4AF /* Credits.rtf */; };
 		472062D3173CC81400A8B4AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 472062D2173CC81400A8B4AF /* AppDelegate.m */; };
 		472062D6173CC81400A8B4AF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 472062D4173CC81400A8B4AF /* MainMenu.xib */; };
-		472062DE173CC82900A8B4AF /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 472062DD173CC82900A8B4AF /* STPrivilegedTask.m */; };
 		47206313173CC9AF00A8B4AF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47206312173CC9AF00A8B4AF /* Security.framework */; };
 		47206319173CD40E00A8B4AF /* LevoClient.app in Resources */ = {isa = PBXBuildFile; fileRef = 47206318173CD40E00A8B4AF /* LevoClient.app */; };
 		47CBE6C4173CE35E00C063C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 47CBE6C3173CE35E00C063C9 /* icon.icns */; };
@@ -50,8 +49,6 @@
 		472062D1173CC81400A8B4AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		472062D2173CC81400A8B4AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		472062D5173CC81400A8B4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		472062DC173CC82900A8B4AF /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
-		472062DD173CC82900A8B4AF /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
 		47206308173CC91600A8B4AF /* LevoClient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LevoClient.xcodeproj; path = ALevoClient/LevoClient/LevoClient.xcodeproj; sourceTree = "<group>"; };
 		47206312173CC9AF00A8B4AF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		47206318173CD40E00A8B4AF /* LevoClient.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = LevoClient.app; sourceTree = "<group>"; };
@@ -59,6 +56,8 @@
 		472ADC9E17409F57005F0529 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		472ADC9F17409F57005F0529 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
 		47CBE6C3173CE35E00C063C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+		47EC4222174369F9006062BE /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
+		47EC4223174369F9006062BE /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +117,9 @@
 				47206317173CD3F500A8B4AF /* MainApp */,
 				472062D1173CC81400A8B4AF /* AppDelegate.h */,
 				472062D2173CC81400A8B4AF /* AppDelegate.m */,
+				47EC4222174369F9006062BE /* STPrivilegedTask.h */,
+				47EC4223174369F9006062BE /* STPrivilegedTask.m */,
 				472062D4173CC81400A8B4AF /* MainMenu.xib */,
-				472062DC173CC82900A8B4AF /* STPrivilegedTask.h */,
-				472062DD173CC82900A8B4AF /* STPrivilegedTask.m */,
 				472062C6173CC81400A8B4AF /* Supporting Files */,
 			);
 			path = ALevoClient;
@@ -241,7 +240,6 @@
 			files = (
 				472062CC173CC81400A8B4AF /* main.m in Sources */,
 				472062D3173CC81400A8B4AF /* AppDelegate.m in Sources */,
-				472062DE173CC82900A8B4AF /* STPrivilegedTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,10 +346,12 @@
 		472062DA173CC81400A8B4AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ALevoClient/ALevoClient-Prefix.pch";
 				INFOPLIST_FILE = "ALevoClient/ALevoClient-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = ALevoClient;
 				WRAPPER_EXTENSION = app;
 			};
@@ -360,10 +360,12 @@
 		472062DB173CC81400A8B4AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ALevoClient/ALevoClient-Prefix.pch";
 				INFOPLIST_FILE = "ALevoClient/ALevoClient-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = ALevoClient;
 				WRAPPER_EXTENSION = app;
 			};

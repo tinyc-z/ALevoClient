@@ -195,7 +195,7 @@
     chdir([cwd fileSystemRepresentation]);
     
     //use Authorization Reference to execute script with privileges
-    OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, [launchPath fileSystemRepresentation], kAuthorizationFlagDefaults, args, NULL);
+    OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, [launchPath fileSystemRepresentation], kAuthorizationFlagDefaults, args, &outputFile);
     
     // OK, now we're done executing, let's change back to old dir
     chdir(prevCwd);
@@ -215,9 +215,9 @@
         isRunning = YES;
     
     // get file handle for the command output
-//    outputFileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(outputFile) closeOnDealloc: YES];
-//    pid = fcntl(fileno(outputFile), F_GETOWN, 0);
-    pid=0;
+    outputFileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(outputFile) closeOnDealloc: YES];
+    pid = fcntl(fileno(outputFile), F_GETOWN, 0);
+//    pid=0;
     // start monitoring task
     checkStatusTimer = [NSTimer scheduledTimerWithTimeInterval: 0.10 target: self selector:@selector(_checkTaskStatus) userInfo: nil repeats: YES];
         

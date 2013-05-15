@@ -40,6 +40,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+//    [self test];
+//    [self initStatusBar];
+//    return;
     if([[LevoConnet sharedInstance] isRunningCheck]){
         [self showAler:@"启动出错" context:@"程序可能没有root权限或者已经运行~！" action:@selector(onExit:)];
     }else{
@@ -210,6 +213,7 @@
             [self.config cleanLog];
             self.config.StopConnet=NO;
             self.config.ReConnetTime=0;
+            [[LevoConnet sharedInstance] initEnvironment];
             [self try2Login];
         }
     }
@@ -255,6 +259,20 @@
         }
     });
 }
+int tttt=0;
+
+- (void)test
+{
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    NSLog(@"------> login fail %d <------",self.config.ReConnetTime++);
+    [self.config pushLog:@"log -->"];
+    [self performSelector:@selector(test) withObject:nil afterDelay:0.5];
+}
 
 
 - (void)try2Login
@@ -266,13 +284,19 @@
     self.config.connetState=ConnetStateLgoing;
     self.config.ReConnetTime+=1;
     [[LevoConnet sharedInstance] connetNeedInit:YES sucess:^{
-        NSLog(@"------> login sucess <------");
+//        NSLog(@"------> login sucess <------");
+        printf("------> login sucess <------");
         self.config.connetTimeout=KConnetTimeOut;
         self.config.connetState=ConnetStateOnline;
         self.config.ReConnetTime=0;
         [self checkOnline];
     } andFail:^{
         NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
+        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
+        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
+        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
+        NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
+//        printf("------> login sucess <------%i",self.config.ReConnetTime);
         [self try2Login];
     }];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(cancleHandler) object:nil];
