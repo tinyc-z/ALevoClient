@@ -82,7 +82,7 @@
         }else if(time<3600){
             self.deviceInfo.lbStateContext.stringValue=[NSString stringWithFormat:@"在线%d分%d秒",time/60,time%60];
         }else{
-            self.deviceInfo.lbStateContext.stringValue=[NSString stringWithFormat:@"在线%d小时%d分%d秒",time/3600,(time-3600)/60,time%60];
+            self.deviceInfo.lbStateContext.stringValue=[NSString stringWithFormat:@"在线%d小时%d分%d秒",time/3600,(time%3600)/60,time%60];
         }
     }
     [self showConnetLight];
