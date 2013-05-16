@@ -69,7 +69,6 @@
 							<string key="NSFrame">{{0, 18}, {500, 280}}</string>
 							<reference key="NSSuperview" ref="200149303"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="681256394"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSHuggingPriority">{15, 250}</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
@@ -2989,8 +2988,8 @@
 			<string key="NSMenuCheckmark">{11, 11}</string>
 			<string key="NSMenuMixedState">{10, 3}</string>
 			<string key="NSSwitch">{15, 15}</string>
-			<string key="icon">{512, 512}</string>
-			<string key="weibo">{48, 48}</string>
+			<string key="icon">{256, 256}</string>
+			<string key="weibo">{128, 128}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>
