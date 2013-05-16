@@ -53,7 +53,7 @@
                   errorDescription:(NSString **)errorDescription {
     
     NSString * allArgs = [arguments componentsJoinedByString:@" "];
-    NSString * fullScript = [NSString stringWithFormat:@"%@ %@", scriptPath, allArgs];
+    NSString * fullScript = [NSString stringWithFormat:@"'%@' %@", scriptPath, allArgs];
     
     NSDictionary *errorInfo = [NSDictionary new];
     NSString *script =  [NSString stringWithFormat:@"do shell script \"%@\" with administrator privileges", fullScript];
