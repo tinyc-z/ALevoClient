@@ -272,7 +272,9 @@
         self.config.connetTimeout=KConnetTimeOut;
         self.config.connetState=ConnetStateOnline;
         self.config.ReConnetTime=0;
-        [self checkOnline];
+        if (self.config.AutoReConnet) {
+            [self checkOnline];
+        }
     } andFail:^{
         NSLog(@"------> login fail %d <------",self.config.ReConnetTime);
 //        printf("------> login sucess <------%i",self.config.ReConnetTime);
@@ -307,10 +309,8 @@
             [self performSelector:@selector(checkOnline) withObject:nil afterDelay:self.config.CheckOfflineTime];
         }else{
             NSLog(@"--->掉线");
-            if (self.config.AutoReConnet) {
 //                [self try2Login];
                 [self try2Cancle];
-            }
             self.config.connetState=ConnetStateOffLine;
         }
     }];
