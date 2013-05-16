@@ -776,6 +776,9 @@ program_running_check()
     ConnetFailBlock=[fail copy];
 
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if (!handle) {
+            [self initEnvironment];
+        }
 //        printf("######## Lenovo Client ver. %s #########\n", LENOVO_VER);
 //        printf("Device:     %s\n", dev_if_name);
 //        printf("MAC:        %02x:%02x:%02x:%02x:%02x:%02x\n",
@@ -786,6 +789,7 @@ program_running_check()
 //        send_eap_packet (EAPOL_LOGOFF);
         send_eap_packet (EAPOL_START);
         pcap_loop (handle, -1, get_packet, NULL);   /* main loop */
+        NSLog(@">>>>>>>pcap_loop--");
 //        pcap_close (handle);
 //        handle=NULL;
         ConnetSucessBlock=nil;
@@ -798,10 +802,20 @@ program_running_check()
 
 - (void)cancle
 {
+    NSLog(@">>>>>>>cancle");
     if (handle) {
         pcap_breakloop(handle);
+        NSLog(@">>>>>>>pcap_breakloop");
     }
+    
     state = READY;
+}
+
+- (void)cancleWithcloseHandle
+{
+    [self cancle];
+    pcap_close (handle);
+    handle=NULL;
 }
 
 -(void)checkOnline:(void(^)(BOOL online))onLine

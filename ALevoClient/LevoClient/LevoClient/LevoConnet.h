@@ -25,4 +25,5 @@ DEF_SINGLETON(LevoConnet)
 //- (void)connetNeedInit:(BOOL)init and:(void(^)(void))fail;
 - (void)connetNeedInit:(BOOL)init sucess:(void(^)(void))sucess andFail:(void(^)(void))fail;
 - (void)cancle;
+- (void)cancleWithcloseHandle;
 @end

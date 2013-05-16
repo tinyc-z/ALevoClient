@@ -303,14 +303,15 @@
 - (void)checkOnline
 {
     if(self.config.StopConnet||self.config.connetState!=ConnetStateOnline)return;
+    NSLog(@">>>>>checkOnline");
     [[LevoConnet sharedInstance] checkOnline:^(BOOL online) {
         if (online) {
-            NSLog(@"--->在线");
+            NSLog(@">>>>>checkOnline--->在线");
             [self performSelector:@selector(checkOnline) withObject:nil afterDelay:self.config.CheckOfflineTime];
         }else{
-            NSLog(@"--->掉线");
-//                [self try2Login];
+            NSLog(@">>>>>checkOnline--->掉线");
                 [self try2Cancle];
+//                [[LevoConnet sharedInstance] cancleWithcloseHandle];
             self.config.connetState=ConnetStateOffLine;
         }
     }];
