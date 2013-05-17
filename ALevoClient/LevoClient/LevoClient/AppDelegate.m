@@ -55,8 +55,6 @@
         [self.logView setHidden:YES];
         
         self.config.connetTimeout=KConnetTimeOut;
-        NSButton *bn=self.bnPreferences;
-        [bn setBordered:NO];
         [self.popView addSubview:self.deviceInfo];
         self.deviceInfo.top=10;
         [NSTimer scheduledTimerWithTimeInterval: 0.5
@@ -118,7 +116,7 @@
 
 - (BOOL)neeShowUserPreferences
 {
-    return (self.config.UserName.length==0||self.config.UserPwd.length==0);
+    return (self.config.UserName.length==0||self.config.UserPwd.length==0||self.config.Device.length==0);
 }
 
 
@@ -172,7 +170,8 @@
 - (void)showPoper:(id)sender;
 {
     self.deviceInfo.lbDev.stringValue=[NSString stringWithFormat:@"%@/%@",[[LevoConnet sharedInstance] selectedDevName],[[LevoConnet sharedInstance] readIpString]];
-    self.deviceInfo.lbMac.stringValue=[[LevoConnet sharedInstance] readMacAddress];
+    NSString *macAddr=[[LevoConnet sharedInstance] readMacAddress];
+    self.deviceInfo.lbMac.stringValue=macAddr.length>0?macAddr:@"--:--:--:--:--";
     [self.popover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
     [NSApp activateIgnoringOtherApps:YES];
 }
@@ -207,12 +206,23 @@
         if (self.config.connetState==ConnetStateLgoing||self.config.connetState==ConnetStateOnline) {
             self.config.StopConnet=YES;
             [self try2Cancle];
+//            [[LevoConnet sharedInstance] cancleWithcloseHandle];
         }else{
-            [self.config cleanLog];
-            self.config.StopConnet=NO;
-            self.config.ReConnetTime=0;
-            [[LevoConnet sharedInstance] initEnvironment];
-            [self try2Login];
+            if (self.config.Device.length==0) {
+                self.deviceInfo.lbStateContext.stringValue=@"找不到网卡";
+            }else if (self.config.UserName.length==0) {
+                self.deviceInfo.lbStateContext.stringValue=@"用户名为空";
+            }else if(self.config.UserPwd.length==0){
+                self.deviceInfo.lbStateContext.stringValue=@"用户密码为空";
+            }else if([[LevoConnet sharedInstance] readMacAddress].length==0){
+                self.deviceInfo.lbStateContext.stringValue=@"获取Mac地址错误";                
+            }else{
+                [self.config cleanLog];
+                self.config.StopConnet=NO;
+                self.config.ReConnetTime=0;
+                [[LevoConnet sharedInstance] initEnvironment];
+                [self try2Login];
+            }
         }
     }
 }

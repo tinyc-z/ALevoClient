@@ -22,3 +22,5 @@ return sharedObject; \
 return self;\
 }
 
+#define CheckOfflineHost1 "8.8.4.4"
+#define CheckOfflineHost2 "www.baidu.com"

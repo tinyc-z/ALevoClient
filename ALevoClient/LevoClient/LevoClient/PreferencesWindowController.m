@@ -46,18 +46,22 @@
         self.CheckOfflineHost.stringValue=self.config.CheckOfflineHost;
     }else{
         NSString *host=[[LevoConnet sharedInstance] getGateWay];
-        self.CheckOfflineHost.stringValue=host.length>0?host:@"8.8.8.8";
+        self.CheckOfflineHost.stringValue=host.length>0?host:@"";
     }
     
     //网卡
     NSArray *deviceList=[[LevoConnet sharedInstance] readDeviceList];
-    [self.DeviceList addItemsWithTitles:deviceList?deviceList:@[@"无设备"]];
-    NSUInteger sindex=[deviceList indexOfObject:self.config.Device];
-    if (sindex==NSNotFound) {
-        //默认选择第一块设备
-        [self.DeviceList selectItemAtIndex:0];
+    if ([deviceList count]>0) {
+        [self.DeviceList addItemsWithTitles:deviceList];
+        NSUInteger sindex=[deviceList indexOfObject:self.config.Device];
+        if (sindex==NSNotFound) {
+            //默认选择第一块设备
+            [self.DeviceList selectItemAtIndex:0];
+        }else{
+            [self.DeviceList selectItemAtIndex:sindex];
+        }
     }else{
-        [self.DeviceList selectItemAtIndex:sindex];
+        [self.DeviceList addItemsWithTitles:@[@"未来发现设备"]];
     }
     
     //检测断线时间
@@ -96,7 +100,7 @@
     self.config.UserPwd=self.UserPwd.stringValue;
     self.config.AutoReConnet=self.AutoRelogin.state==0?NO:YES;
     self.config.AutoLogin=self.AutoLogin.state==0?NO:YES;
-    self.config.Device=[self.DeviceList selectedItem].title;
+    self.config.Device=[self.DeviceList selectedItem].title?[self.DeviceList selectedItem].title:@"";
     self.config.CheckOfflineTime=[self.CheckOfflineTime selectedItem].tag;
     self.config.CheckOfflineHost=self.CheckOfflineHost.stringValue;
     [self.delegate onPreferencesApply];

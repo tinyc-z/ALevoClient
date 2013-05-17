@@ -156,11 +156,7 @@ char        *dev = NULL;               /* 连接的设备名 */
 char        *username = NULL;
 char        *password = NULL;
 int         exit_flag = 0;
-#ifdef DEBUG
-int         debug_on = 1;
-#else
 int         debug_on = 0;
-#endif
 /* #####   GLOBLE VAR DEFINITIONS   #########################
  *-----------------------------------------------------------------------------
  *  报文相关信息变量，由init_info 、init_device函数初始化。
@@ -823,7 +819,7 @@ program_running_check()
 -(void)checkOnline:(void(^)(BOOL online))onLine
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        if ([self PingHost:(char *)[[[PreferencesModel sharedInstance] CheckOfflineHost] UTF8String]]||[self PingHost:"8.8.8.8"]||[self PingHost:"www.baidu.com"]) {
+        if ([self PingHost:(char *)[[[PreferencesModel sharedInstance] CheckOfflineHost] UTF8String]]||[self PingHost:CheckOfflineHost1]||[self PingHost:CheckOfflineHost2]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 onLine(YES);
             });
@@ -922,7 +918,7 @@ int bsd_get_mac(const char ifname[], uint8_t eth_addr[])
         return  nil;
 	}
     NSMutableArray *arr=[[NSMutableArray alloc] initWithCapacity:8];
-    while (alldevs) {
+    while (alldevs&&alldevs->name) {
         [arr addObject:[NSString stringWithUTF8String:alldevs->name]];
         alldevs=alldevs->next;
     }
@@ -937,10 +933,10 @@ int bsd_get_mac(const char ifname[], uint8_t eth_addr[])
 - (NSString *)selectedDevName
 {
     pcap_if_t *dev=[self selectedDev];
-    if (dev) {
+    if (dev&&dev->name) {
         return [NSString stringWithUTF8String:dev->name];
     }else{
-        return @"未知";
+        return nil;
     }
 }
 
@@ -951,27 +947,37 @@ static pcap_if_t *alldevices;
 	/* Retrieve the device list */
 	if(pcap_findalldevs(&alldevices, NULL) != -1)
 	{
+//        alldevices=NULL;
+        pcap_if_t *palldevices=alldevices;
         if ([PreferencesModel sharedInstance].Device.length>0) {
-            while (alldevices) {
+            while (alldevices&&alldevices->name) {
                 if ([[NSString stringWithUTF8String:alldevices->name] isEqualToString:[PreferencesModel sharedInstance].Device]) {
                     return alldevices;
                 }
                 alldevices=alldevices->next;
             }
         }
-        return alldevices;
+        if (palldevices&&palldevices->name) {
+            [PreferencesModel sharedInstance].Device=[NSString stringWithUTF8String:palldevices->name];
+            return palldevices;
+        }else{
+            [PreferencesModel sharedInstance].Device=@"";
+            return NULL;
+        }
     }
     return NULL;
 }
 
 - (NSString *)getIpString:(pcap_if_t *)alldevs
 {
-    pcap_addr_t     *addrs;
-    /* Get IP ADDR and MASK */
-    for (addrs = alldevs->addresses; addrs; addrs=addrs->next) {
-        if (addrs->addr->sa_family == AF_INET) {
-            u_int _ip = ((struct sockaddr_in *)addrs->addr)->sin_addr.s_addr;
-            return [NSString stringWithUTF8String:inet_ntoa(*(struct in_addr*)&_ip)];
+    if (alldevs&&alldevs->addresses) {
+        pcap_addr_t     *addrs;
+        /* Get IP ADDR and MASK */
+        for (addrs = alldevs->addresses; addrs; addrs=addrs->next) {
+            if (addrs->addr->sa_family == AF_INET) {
+                u_int _ip = ((struct sockaddr_in *)addrs->addr)->sin_addr.s_addr;
+                return [NSString stringWithUTF8String:inet_ntoa(*(struct in_addr*)&_ip)];
+            }
         }
     }
     return @"0.0.0.0";
@@ -981,19 +987,19 @@ static pcap_if_t *alldevices;
 {
     u_char   mac_addr[ETHER_ADDR_LEN]; /* MAC地址 */
     pcap_if_t *_dev=[self selectedDev];
-    if (_dev) {
+    if (_dev&&_dev->name) {
         if (bsd_get_mac (_dev->name, mac_addr) == 0) {
             /* construct the filter string */
             return [NSString stringWithFormat:@"%02x:%02x:%02x:%02x:%02x:%02x",mac_addr[0],mac_addr[1],mac_addr[2], mac_addr[3],mac_addr[4], mac_addr[5]];
         }
     }
-    return @"--:--:--:--:--:--";
+    return @"";
 }
 
 - (NSString *)getGateWay
 {
     char result[1024];
-    executeSystem( "route -n get default|grep gateway", result);
+    executeSystem( "route -n get default|egrep gateway:|sed 's/.*gateway/gateway/'", result);
     printf("%s", result );
     char *p=&result[0];
     while ((char)p[0]!='g'&&(char)p[1]!='a'&&(char)p[2]!='t') {
@@ -1003,7 +1009,8 @@ static pcap_if_t *alldevices;
     NSString *res=[NSString stringWithFormat:@"%s",p];
     NSRange range=[res rangeOfString:@"gateway:"];
     if (range.location==0) {
-        return [res substringWithRange:NSMakeRange(range.length,res.length-range.length-1)];
+        NSString *gateway=[res substringFromIndex:range.location+range.length];
+        return [gateway stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
     return @"";
 }

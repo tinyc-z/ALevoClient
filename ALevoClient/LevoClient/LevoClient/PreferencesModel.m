@@ -25,8 +25,10 @@ IMP_SINGLETON(PreferencesModel)
     if (self=[super init]) {
         self.logs=[[NSMutableArray alloc] initWithCapacity:5];
         self.config=[NSUserDefaults standardUserDefaults];
-        [self creatUserDefault];
         [self readVersion];
+        [self creatUserDefault];
+
+        
         
         _UserName=[self.config stringForKey:KUserName];
         _UserPwd=[self.config stringForKey:KUserPwd];
@@ -54,10 +56,11 @@ IMP_SINGLETON(PreferencesModel)
 
 - (void)creatUserDefault
 {
-    if(![self.config objectForKey:@"firstTimeFlag"]){
+    NSString *key=[@"firstTimeFlag" stringByAppendingString:_versionStr];
+    if(![self.config objectForKey:key]){
         [self.config setBool:YES forKey:KAutoLogin];
         [self.config setBool:YES forKey:KAutoReConnet];
-        [self.config setObject:@"NO" forKey:@"firstTimeFlag"];
+        [self.config setObject:@"NO" forKey:key];
         [self.config setObject:@"" forKey:KUserName];
         [self.config setObject:@"" forKey:KUserPwd];
         [self.config setObject:@"" forKey:KDevice];
@@ -74,7 +77,6 @@ IMP_SINGLETON(PreferencesModel)
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     _versionStr=[NSString stringWithFormat:@"%@%@",[infoDict objectForKey:@"CFBundleShortVersionString"],[infoDict objectForKey:@"CFBundleVersion"]];
 }
-
 
 - (void)pushErrorLog:(NSString *)log
 {
