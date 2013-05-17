@@ -156,8 +156,11 @@ char        *dev = NULL;               /* 连接的设备名 */
 char        *username = NULL;
 char        *password = NULL;
 int         exit_flag = 0;
+#ifdef DEBUG
+int         debug_on = 1;
+#else
 int         debug_on = 0;
-
+#endif
 /* #####   GLOBLE VAR DEFINITIONS   #########################
  *-----------------------------------------------------------------------------
  *  报文相关信息变量，由init_info 、init_device函数初始化。
@@ -336,9 +339,7 @@ action_by_eap_type(enum EAPType pType,
             }
             break;
         case EAP_REQUEST_IDENTITY:
-            if (state == STARTED){
-                fprintf(stdout, ">>Protocol: REQUEST EAP-Identity\n");
-            }
+            fprintf(stdout, ">>Protocol: REQUEST EAP-Identity\n");
             memset (eap_response_ident + 14 + 5, header->eap_id, 1);
             send_eap_packet(EAP_RESPONSE_IDENTITY);
             [[PreferencesModel sharedInstance] pushLog:@"发送EAP-Identity..."];
@@ -352,6 +353,8 @@ action_by_eap_type(enum EAPType pType,
             [[PreferencesModel sharedInstance] pushLog:@"发送MD5-Challenge(PASSWORD)..."];
             break;
         default:
+            NSLog(@"未知报文");
+            print_server_info (header->eap_info_tailer);
             return;
     }
 }
@@ -807,7 +810,6 @@ program_running_check()
         pcap_breakloop(handle);
         NSLog(@">>>>>>>pcap_breakloop");
     }
-    
     state = READY;
 }
 

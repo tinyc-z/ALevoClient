@@ -13,7 +13,7 @@
 - (void)onPreferencesApply;
 @end
 
-@interface PreferencesWindowController : NSWindowController
+@interface PreferencesWindowController : NSWindowController<NSTabViewDelegate>
 
 @property(assign)id<PreferencesDelegate> delegate;
 

@@ -30,6 +30,7 @@
 {
     [super windowDidLoad];
     self.config=[PreferencesModel sharedInstance];
+    self.tabView.delegate=self;
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
@@ -87,6 +88,10 @@
         [self.UserName becomeFirstResponder];
         return;
     }
+    if (self.UserPwd.stringValue.length==0) {
+        [self.UserPwd becomeFirstResponder];
+        return;
+    }
     self.config.UserName=self.UserName.stringValue;
     self.config.UserPwd=self.UserPwd.stringValue;
     self.config.AutoReConnet=self.AutoRelogin.state==0?NO:YES;
@@ -104,6 +109,17 @@
     [self.wAbout makeKeyAndOrderFront:nil];
     [NSApp showWindow:self.wAbout];
     [NSApp activateIgnoringOtherApps:YES];
+}
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+    if (self.AutoRelogin.state==0) {
+        [self.CheckOfflineTime setEnabled:NO];
+        [self.CheckOfflineHost setEnabled:NO];
+    }else{
+        [self.CheckOfflineTime setEnabled:YES];
+        [self.CheckOfflineHost setEnabled:YES];
+    }
 }
 
 @end
