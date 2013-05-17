@@ -56,7 +56,7 @@ IMP_SINGLETON(PreferencesModel)
 
 - (void)creatUserDefault
 {
-    NSString *key=[@"firstTimeFlag" stringByAppendingString:_versionStr];
+    NSString *key=@"firstTimeFlag";
     if(![self.config objectForKey:key]){
         [self.config setBool:YES forKey:KAutoLogin];
         [self.config setBool:YES forKey:KAutoReConnet];
@@ -66,9 +66,22 @@ IMP_SINGLETON(PreferencesModel)
         [self.config setObject:@"" forKey:KDevice];
         [self.config setObject:@"" forKey:KCheckOfflineHost];
         [self.config setInteger:5 forKey:KCheckOfflineTime];
-        [self.config synchronize];
         [self pushLog:@"creatUserDefault"];
+    }else{
+        if (![self.config objectForKey:KUserName]) {
+            [self.config setObject:@"" forKey:KUserName];
+        }
+        if (![self.config objectForKey:KUserPwd]) {
+            [self.config setObject:@"" forKey:KUserPwd];
+        }
+        if (![self.config objectForKey:KDevice]) {
+            [self.config setObject:@"" forKey:KDevice];
+        }
+        if (![self.config objectForKey:KCheckOfflineHost]) {
+            [self.config setObject:@"" forKey:KCheckOfflineHost];
+        }
     }
+    [self.config synchronize];
 }
 
 - (void)readVersion
