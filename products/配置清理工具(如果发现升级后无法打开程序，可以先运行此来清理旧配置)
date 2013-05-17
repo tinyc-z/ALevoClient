@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo rm /private/var/root/Library/Preferences/ibcker.LevoClient.plist
