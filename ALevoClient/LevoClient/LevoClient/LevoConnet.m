@@ -553,11 +553,11 @@ void init_info()
  *  同时设置pcap的初始化工作句柄。
  * =====================================================================================
  */
-void init_device(char *adev)
+void init_device()
 {
     struct          bpf_program fp;			/* compiled filter program (expression) */
     char            filter_exp[51];         /* filter expression [3] */
-    pcap_if_t       *alldevs,*alldevsp;
+    pcap_if_t       *alldevs,*alldevsp,*alldevsp2;
     pcap_addr_t     *addrs;
     
 	/* Retrieve the device list */
@@ -571,8 +571,9 @@ void init_device(char *adev)
     /* 使用第一块设备 */
     dev=NULL;
     alldevsp=alldevs;
+    alldevsp2=alldevs;
     if ([PreferencesModel sharedInstance].Device.length>0) {
-        while (alldevsp) {
+        while (alldevsp&&alldevsp->name) {
             if ([[NSString stringWithUTF8String:alldevsp->name] isEqualToString:[PreferencesModel sharedInstance].Device]) {
                 dev=alldevsp->name;
                 break;
@@ -581,7 +582,14 @@ void init_device(char *adev)
         }
     }
     if(dev == NULL) {
-        dev = alldevs->name;
+        while (alldevsp2) {
+            if (alldevsp2->name) {
+                dev = alldevsp2->name;
+                [PreferencesModel sharedInstance].Device=[NSString stringWithUTF8String:dev];
+                break;
+            }
+            alldevsp2=alldevsp2->next;
+        }
     }
     strcpy (dev_if_name, dev);
     
@@ -757,10 +765,9 @@ program_running_check()
 {
     username = (char *)[[PreferencesModel sharedInstance].UserName cStringUsingEncoding:NSUTF8StringEncoding];
     password = (char *)[[PreferencesModel sharedInstance].UserPwd cStringUsingEncoding:NSUTF8StringEncoding];
-    char *idev=(char *)[[PreferencesModel sharedInstance].Device cStringUsingEncoding:NSUTF8StringEncoding];
     dev=NULL;
     init_info();
-    init_device(idev);
+    init_device();
     init_frames ();
 //    signal (SIGINT, signal_interrupted);
 //    signal (SIGTERM, signal_interrupted);

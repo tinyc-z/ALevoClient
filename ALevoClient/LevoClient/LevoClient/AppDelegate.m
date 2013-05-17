@@ -283,7 +283,8 @@
         self.config.connetState=ConnetStateOnline;
         self.config.ReConnetTime=0;
         if (self.config.AutoReConnet) {
-            [self checkOnline];
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(checkOnline) object:nil];
+            [self performSelector:@selector(checkOnline) withObject:nil afterDelay:self.config.CheckOfflineTime];
         }
     } andFail:^{
         NSLog(@"------> login fail %d <------",self.config.ReConnetTime);

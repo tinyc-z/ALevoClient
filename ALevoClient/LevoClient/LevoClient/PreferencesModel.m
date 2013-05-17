@@ -130,7 +130,7 @@ IMP_SINGLETON(PreferencesModel)
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([change[@"new"]isEqualTo:change[@"old"]]) {
+    if ([change[@"new"]isEqualTo:change[@"old"]] || !change[@"new"]) {
         return;
     }
     NSLog(@"model->%@",change);
