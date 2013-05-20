@@ -69,6 +69,7 @@
 							<string key="NSFrame">{{0, 18}, {500, 280}}</string>
 							<reference key="NSSuperview" ref="200149303"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="681256394"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSHuggingPriority">{15, 250}</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
@@ -210,7 +211,6 @@
 												<string key="NSFrame">{{271, 59}, {104, 18}}</string>
 												<reference key="NSSuperview" ref="681256394"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="133659537"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="805359648">
@@ -584,7 +584,7 @@
 							<object class="NSButtonCell" key="NSCell" id="993363764">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">应用</string>
+								<string key="NSContents">保存</string>
 								<reference key="NSSupport" ref="843747291"/>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="962229016"/>
@@ -2989,7 +2989,7 @@
 			<string key="NSMenuMixedState">{10, 3}</string>
 			<string key="NSSwitch">{15, 15}</string>
 			<string key="icon">{256, 256}</string>
-			<string key="weibo">{128, 128}</string>
+			<string key="weibo">{48, 48}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>

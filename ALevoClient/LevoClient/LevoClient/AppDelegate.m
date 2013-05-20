@@ -247,7 +247,6 @@
                 break;
             case ConnetStateOnline:
                 [[PreferencesModel sharedInstance]pushLog:@"登录成功..."];
-                self.config.ConnetedTime=[NSDate timeIntervalSinceReferenceDate];
                 self.bnLogin.title=@"断开";
                 self.deviceInfo.lbStateContext.stringValue=@"在线";
                 [self.bnPreferences setHidden:YES];
@@ -279,6 +278,9 @@
     [[LevoConnet sharedInstance] connetNeedInit:YES sucess:^{
         NSLog(@"------> login sucess <------");
 //        printf("------> login sucess <------");
+        if (self.config.connetState==ConnetStateLgoing) {
+            self.config.ConnetedTime=[NSDate timeIntervalSinceReferenceDate];
+        }
         self.config.connetTimeout=KConnetTimeOut;
         self.config.connetState=ConnetStateOnline;
         self.config.ReConnetTime=0;

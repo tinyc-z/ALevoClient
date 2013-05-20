@@ -133,7 +133,17 @@ static void get_packet(u_char *args, const struct pcap_pkthdr *header,
                        const u_char *packet);
 
 u_char talier_eapol_start[] = {0x00, 0x00, 0x2f, 0xfc, 0x03, 0x00};
-u_char talier_eap_md5_resp[] = {0x00, 0x00, 0x2f, 0xfc, 0x00, 0x03, 0x01, 0x01, 0x00};
+
+//u_char talier_eap_md5_resp[] ={0x00, 0x00, 0x2f, 0xfc, 0x00, 0x03, 0x01, 0x01, 0x00};
+
+//吉珠抓到的版本3.5
+u_char talier_eap_md5_resp[] ={0x00,0x00,0x2f,0xfc,0x00,0x15,0x01,0x01,0x00,0x02,0x10,
+    0xa1,0x3c,0x54,0xd3,0x2c,0x16,0x31,0xb8,0x77,0xe8,0x8e,0x32,0x57,0x61,0x98,0x44};
+
+//吉珠抓到的版本3.1
+u_char talier_eap_md5_resp31[] ={0x00,0x00,0x2f,0xfc,0x00,0x15,0x01,0x01,0x00,0x02,0x10,
+    0xd8,0xda,0x5d,0xed,0x87,0x95,0x6e,0x39,0x45,0x94,0x7c,0x40,0xcd,0xee,0xdf,0xab};
+
 
 /* #####   GLOBLE VAR DEFINITIONS   ######################### */
 /*-----------------------------------------------------------------------------
@@ -144,7 +154,8 @@ char        errbuf[PCAP_ERRBUF_SIZE];  /* error buffer */
 enum STATE  state = READY;                     /* program state */
 pcap_t      *handle = NULL;			   /* packet capture handle */
 u_char      muticast_mac[] =            /* 802.1x的认证服务器多播地址 */
-{0x01, 0x80, 0xc2, 0x00, 0x00, 0x03};
+{0x01, 0x80, 0xc2, 0x00, 0x00, 0x03};//普通认证
+//{0x01, 0x80, 0xc2, 0x00, 0x00, 0x23};//扩展认证
 
 
 /* #####   GLOBLE VAR DEFINITIONS   ###################
@@ -156,7 +167,7 @@ char        *dev = NULL;               /* 连接的设备名 */
 char        *username = NULL;
 char        *password = NULL;
 int         exit_flag = 0;
-int         debug_on = 0;
+int         debug_on = 1;
 /* #####   GLOBLE VAR DEFINITIONS   #########################
  *-----------------------------------------------------------------------------
  *  报文相关信息变量，由init_info 、init_device函数初始化。
@@ -176,6 +187,7 @@ u_char      eapol_logoff[64];           /* EAPOL LogOff报文 */
 u_char      eapol_keepalive[64];
 u_char      eap_response_ident[128]; /* EAP RESPON/IDENTITY报文 */
 u_char      eap_response_md5ch[128]; /* EAP RESPON/MD5 报文 */
+int         eap_response_md5ch_len;
 
 
 //u_int       live_count = 0;             /* KEEP ALIVE 报文的计数值 */
@@ -380,7 +392,8 @@ send_eap_packet(enum EAPType send_type)
             break;
         case EAP_RESPONSE_MD5_CHALLENGE:
             frame_data = eap_response_md5ch;
-            frame_length = 40 + username_length + 14;
+//            frame_length = 40 + username_length + 14;
+            frame_length=eap_response_md5ch_len;
             fprintf(stdout, ">>Protocol: SEND EAP-Response/Md5-Challenge\n");
             break;
         case EAP_RESPONSE_IDENTITY_KEEP_ALIVE:
@@ -505,8 +518,9 @@ init_frames()
     data_index += username_length;
     memcpy (eap_response_md5ch + data_index, &local_ip, 4);
     data_index += 4;
-    memcpy (eap_response_md5ch + data_index, talier_eap_md5_resp, 9);
-    
+    memcpy (eap_response_md5ch + data_index, talier_eap_md5_resp, sizeof(talier_eap_md5_resp)/sizeof(u_char));
+    data_index += sizeof(talier_eap_md5_resp)/sizeof(u_char);    
+    eap_response_md5ch_len=data_index;
     //    print_hex(eap_response_md5ch, 14 + 4 + 6 + 16 + username_length + 14);
     
 }
